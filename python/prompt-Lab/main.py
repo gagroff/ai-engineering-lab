@@ -44,6 +44,8 @@ def call_api(client: OpenAI, user_prompt: str) -> str:
         model=MODEL,
         messages=[{"role": "user", "content": user_prompt}]
     )
+    if not response.choices:
+        raise ValueError("API returned an empty response with no choices.")
     return response.choices[0].message.content
 
 
@@ -78,7 +80,11 @@ def handle_prompt(client: OpenAI, user_prompt: str) -> None:
 
 def run_prompt_loop(client: OpenAI) -> None:
     while True:
-        user_prompt = input(f"\nEnter a prompt (or type '{EXIT_COMMAND}'): ").strip()
+        try:
+            user_prompt = input(f"\nEnter a prompt (or type '{EXIT_COMMAND}'): ").strip()
+        except (KeyboardInterrupt, EOFError):
+            print("\nGoodbye!")
+            break
 
         if not user_prompt:
             continue
@@ -93,7 +99,11 @@ def run_prompt_loop(client: OpenAI) -> None:
 def main() -> None:
     print("=== Prompt Lab (Logging Enabled) ===")
     setup_log()
-    client = get_client()
+    try:
+        client = get_client()
+    except EnvironmentError as e:
+        print(f"Error: {e}")
+        return
     run_prompt_loop(client)
 
 
