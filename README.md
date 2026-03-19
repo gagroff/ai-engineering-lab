@@ -8,22 +8,39 @@ Learn how to build:
 
 - AI agents
 - Retrieval Augmented Generation (RAG) systems
-- developer productivity tools
+- Developer productivity tools
 - AI-powered applications using Python and C#
+
+---
 
 ## Repository Structure
 
-python/
-Python AI services and experiments
+```
+ai-engineering-lab/
+├── python/          # Python AI services and experiments
+├── csharp/          # C# applications integrating AI services
+├── agents/          # AI agents and automation tools
+├── experiments/     # Temporary AI experiments
+└── notes/           # Learning notes and documentation
+```
 
-csharp/
-C# applications integrating AI services
+---
 
-agents/
-AI agents and automation tools
+## Projects
 
-experiments/
-Temporary AI experiments
+### Python
 
-notes/
-Learning notes and documentation
+| Project | Description |
+|---|---|
+| [prompt-Lab](python/prompt-Lab/) | Interactive CLI for sending prompts to the OpenAI API with JSON logging |
+
+---
+
+## Setup
+
+Each project has its own dependencies and setup instructions. See the README in each project directory.
+
+**Common requirements:**
+
+- Python 3.9+
+- An OpenAI API key set as `OPENAI_API_KEY` in your environment
